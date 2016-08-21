@@ -1,12 +1,15 @@
 package yamba.com.example.netanel.yamba;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -17,6 +20,12 @@ public class TimelineActivity extends BaseActivity {
     ListView listView;
     SQLiteDatabase db;
     StatusData.DbHelper dbHelper;
+    Cursor cursor;
+    SimpleCursorAdapter simpleCursorAdapter;
+    TimelineReceiver timelineReceiver;
+
+    private static final String TAG = TimelineActivity.class.getName().toString();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +42,7 @@ public class TimelineActivity extends BaseActivity {
             startActivity(new Intent(this, PrefsActivity.class));
             Toast.makeText(this,"You must define credential to use service", Toast.LENGTH_LONG);
         }
+        timelineReceiver = new TimelineReceiver();
     }
 
     @Override
@@ -44,23 +54,25 @@ public class TimelineActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Cursor curser = db.query(StatusData.TABLE, null, null, null, null, null,StatusData.C_CREATED_AT + " DESC");
-        startManagingCursor(curser);
+        cursor = db.query(StatusData.TABLE, null, null, null, null, null,StatusData.C_CREATED_AT + " DESC");
+        startManagingCursor(cursor);
 
         String[] FROM = {StatusData.C_USER, StatusData.C_CREATED_AT, StatusData.C_TEXT};
         int[] TO = {R.id.textUser, R.id.textCreatedAt, R.id.textText};
-        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.row, curser, FROM, TO);
+        simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.row, cursor, FROM, TO);
         //listView.setAdapter(simpleCursorAdapter);
 
-//        TimelineAdaptor timelineAdaptor = new TimelineAdaptor(this, curser);
+//        TimelineAdaptor timelineAdaptor = new TimelineAdaptor(this, cursor);
 //         listView.setAdapter(timelineAdaptor);
-        //SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this, curser, )
-//        while(curser.moveToNext()){
-//            String user =  curser.getString(curser.getColumnIndex(StatusData.C_USER));
-//            String text      =  curser.getString(curser.getColumnIndex(StatusData.C_TEXT));
+        //SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this, cursor, )
+//        while(cursor.moveToNext()){
+//            String user =  cursor.getString(cursor.getColumnIndex(StatusData.C_USER));
+//            String text      =  cursor.getString(cursor.getColumnIndex(StatusData.C_TEXT));
 //
 //            String output = String.format("%s: %s\n", user, text); //
 //            textView.append(output);
+
+
 //        }
 
         SimpleCursorAdapter.ViewBinder viewBinder = new SimpleCursorAdapter.ViewBinder() {
@@ -77,5 +89,26 @@ public class TimelineActivity extends BaseActivity {
         };
         simpleCursorAdapter.setViewBinder(viewBinder);
         listView.setAdapter(simpleCursorAdapter);
+        IntentFilter intentFilter = new IntentFilter(ServiceUpdate.UPDATE_INTENT);
+        registerReceiver(timelineReceiver,intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(timelineReceiver);
+    }
+
+    public class TimelineReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+               Log.d("TimelineReceiver" , "onReceive");
+//               cursor.requery();
+//               simpleCursorAdapter.notifyDataSetChanged();
+
+            cursor = yambaApplication.getStatusData().getStatusUpdates();
+            simpleCursorAdapter.changeCursor(cursor);
+            simpleCursorAdapter.notifyDataSetChanged(); //
+        }
     }
 }

@@ -16,8 +16,8 @@ public class ServiceUpdate extends Service {
     private boolean runFlag = false;
     private Updater updater = null;
     private YambaApplication yambaApplication;
-
-
+    public static final String UPDATE_INTENT = "yamba.com.example.netanel.yamba.UPDATE_INTENT";
+    public static final String UPDATE_INTENT_COUNT ="updateCount";
 
     public ServiceUpdate() {
     }
@@ -71,6 +71,10 @@ public class ServiceUpdate extends Service {
                     int sleepTime = 30;
                     if (i > 0) {
                         Log.d(TAG, "Received" + i + " new messages" );
+                        Log.d(TAG, "Broadcasting the intent for action " + UPDATE_INTENT );
+                        Intent intent = new Intent(UPDATE_INTENT);
+                        intent.putExtra(UPDATE_INTENT_COUNT, i);
+                        sendBroadcast(intent);
                     } else {
                         Log.d(TAG, "No new messages Received");
                     }

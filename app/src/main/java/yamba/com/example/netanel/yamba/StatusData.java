@@ -31,6 +31,10 @@ public class StatusData {
         dbHelper = new DbHelper(context);
     }
 
+    public void close(){
+        dbHelper.close();
+    }
+
     public void insertOrIgnore(ContentValues values){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -60,10 +64,19 @@ public class StatusData {
         }
     }
 
-    public String getStatusTextById(long id) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(TABLE, DB_ARRAY_COLUMN, C_ID + "=" + id, null, null, null, null);
-        return cursor.moveToNext() ? cursor.getString(0): null;
+
+    public String getStatusTextById(long id) { //
+        SQLiteDatabase db = this.dbHelper.getReadableDatabase();
+        try {
+            Cursor cursor = db.query(TABLE, DB_ARRAY_COLUMN, C_ID + "=" + id, null, null, null, null);
+            try {
+                return cursor.moveToNext() ? cursor.getString(0) : null;
+            } finally {
+                cursor.close();
+            }
+        } finally {
+            db.close();
+        }
     }
 
     public class DbHelper extends SQLiteOpenHelper {

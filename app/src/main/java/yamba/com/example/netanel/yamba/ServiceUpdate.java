@@ -67,10 +67,14 @@ public class ServiceUpdate extends Service {
             while (serviceUpdate.runFlag){
                 Log.d(TAG, "Updater running");
                 try {
-                    yambaApplication.fetchStatusUpdates();
+                    int i = yambaApplication.fetchStatusUpdates();
                     int sleepTime = 30;
                     Log.d(TAG, "Going to sleep for " + sleepTime + " seconds");
                     Thread.sleep(1000 * sleepTime);
+                    if (i > 0) {
+                        Log.d(TAG, "Relieved  " + i + " new messages" );
+                    }
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     serviceUpdate.runFlag = false;

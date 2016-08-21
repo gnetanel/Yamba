@@ -13,7 +13,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TimelineActivity extends AppCompatActivity {
+public class TimelineActivity extends BaseActivity {
     ListView listView;
     SQLiteDatabase db;
     StatusData.DbHelper dbHelper;
@@ -24,10 +24,10 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline);
 
         listView = (ListView)findViewById(R.id.listView);
-        dbHelper = ((YambaApplication)getApplication()).getStatusData().dbHelper;
+        dbHelper = yambaApplication.getStatusData().dbHelper;
         db= dbHelper.getReadableDatabase();
 
-        SharedPreferences sharedPref = ((YambaApplication)getApplication()).getSharedPreferences();
+        SharedPreferences sharedPref = yambaApplication.prefs;
         String user = sharedPref.getString("username", null);
         if (user == null){
             startActivity(new Intent(this, PrefsActivity.class));

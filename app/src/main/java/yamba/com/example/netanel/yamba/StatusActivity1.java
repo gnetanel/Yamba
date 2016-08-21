@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import winterwell.jtwitter.TwitterException;
 
-public class StatusActivity1 extends AppCompatActivity implements View.OnClickListener{
+public class StatusActivity1 extends BaseActivity implements View.OnClickListener{
 
     public static final String TAG = StatusActivity1.class.getName().toString();
     private EditText editText;

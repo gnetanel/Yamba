@@ -16,7 +16,7 @@ import winterwell.jtwitter.Twitter;
 public class YambaApplication extends Application implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String TAG = YambaApplication.class.getName().toString();
     private Twitter twitter;
-    private SharedPreferences prefs;
+    protected SharedPreferences prefs;
     private boolean serviceRunning = false;
     private StatusData statusData;
 
@@ -34,9 +34,13 @@ public class YambaApplication extends Application implements SharedPreferences.O
 
     public synchronized int fetchStatusUpdates() {
         int count = 0;
-        List<Status> timeline = getTwitter().getFriendsTimeline();
+        Twitter twitter = getTwitter();
+        if (twitter == null){
+            Log.i(TAG, "Twitter=null");
+            return 0;
+        }
+        List<Status> timeline = twitter.getFriendsTimeline();
         ContentValues values = new ContentValues();
-
         long latestTime = statusData.getLatestStatusCreatedAtTime();
         try {
             for (Status status : timeline) {

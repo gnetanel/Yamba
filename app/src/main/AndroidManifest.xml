@@ -6,6 +6,17 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!--
+    <permission
+        android:name="yamba.com.example.netanel.yamba.SEND_TIMELINE_PERMISSION"
+        />
+
+    <permission
+        android:name="yamba.com.example.netanel.yamba.RECEIEVE_TIMELINE_PERMISSION"
+        />
+    -->
+
+
     <application
         android:name=".YambaApplication"
         android:allowBackup="true"

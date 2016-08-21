@@ -75,6 +75,7 @@ public class ServiceUpdate extends Service {
                         Intent intent = new Intent(UPDATE_INTENT);
                         intent.putExtra(UPDATE_INTENT_COUNT, i);
                         sendBroadcast(intent);
+                        //sendBroadcast(intent,"yamba.com.example.netanel.yamba.RECEIEVE_TIMELINE_PERMISSION");
                     } else {
                         Log.d(TAG, "No new messages Received");
                     }

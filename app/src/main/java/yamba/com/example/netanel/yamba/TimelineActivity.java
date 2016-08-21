@@ -90,8 +90,8 @@ public class TimelineActivity extends BaseActivity {
         simpleCursorAdapter.setViewBinder(viewBinder);
         listView.setAdapter(simpleCursorAdapter);
         IntentFilter intentFilter = new IntentFilter(ServiceUpdate.UPDATE_INTENT);
-        registerReceiver(timelineReceiver,intentFilter);
-        //registerReceiver(timelineReceiver,intentFilter,"yamba.com.example.netanel.yamba.SEND_TIMELINE_PERMISSION",null);
+        //registerReceiver(timelineReceiver,intentFilter);
+        registerReceiver(timelineReceiver,intentFilter,"yamba.com.example.netanel.yamba.SEND_TIMELINE_PERMISSION",null);
     }
 
     @Override

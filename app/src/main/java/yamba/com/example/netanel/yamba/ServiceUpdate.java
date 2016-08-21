@@ -69,14 +69,16 @@ public class ServiceUpdate extends Service {
                 try {
                     int i = yambaApplication.fetchStatusUpdates();
                     int sleepTime = 30;
+                    if (i > 0) {
+                        Log.d(TAG, "Received" + i + " new messages" );
+                    } else {
+                        Log.d(TAG, "No new messages Received");
+                    }
                     Log.d(TAG, "Going to sleep for " + sleepTime + " seconds");
                     Thread.sleep(1000 * sleepTime);
-                    if (i > 0) {
-                        Log.d(TAG, "Relieved  " + i + " new messages" );
-                    }
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Log.d(TAG, "Got InterruptedException, stop loopoing...");
                     serviceUpdate.runFlag = false;
                 }
             }

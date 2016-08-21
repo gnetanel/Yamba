@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Yamba</string>
+    <string name="titleStatus">Enter your status</string>
+    <string name="submit_status_button">Submit status</string>
+    <string name="titleUsername">Username</string>
+    <string name="summaryUsername">Username</string>
+    <string name="titlePassword">Password</string>
+    <string name="summaryPassword">Enter Password</string>
+    <string name="titleApiRoot">API Root address</string>
+    <string name="summaryApiRoot">Enter API Root address</string>
+    <string name="titlePrefs">Preferences</string>
+    <string name="titleServiceStart">Start Service</string>
+    <string name="titleServiceStop">Stop service</string>
+    <string name="timelineHeader">Timeline</string>
+    <string name="titleGoToTimeline">Go to Timeline</string>
+</resources>

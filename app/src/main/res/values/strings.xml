@@ -15,4 +15,6 @@
     <string name="titleGoToTimeline">Go to Timeline</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="msgLastTimelineUpdate">last time update</string>
+
 </resources>

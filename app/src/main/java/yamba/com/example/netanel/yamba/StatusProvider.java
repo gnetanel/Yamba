@@ -13,7 +13,8 @@ import java.net.URI;
 public class StatusProvider extends ContentProvider {
     private static final String TAG = StatusProvider.class.getName().toString();
     StatusData statusData;
-    public static final Uri URI = Uri.parse("content//yamba.com.example.netanel.yamba.statusprovider/status");
+    public static final Uri URI = Uri.parse("content://yamba.com.example.netanel.yamba.statusprovider/status");
+
     static final String SINGLE_RECORD_MIME_TYPE =
             "vnd.android.cursor.item/yamba.com.example.netanel.yamba.status";
     static final String MULTIPLE_RECORD_MIME_TYPE =
@@ -22,6 +23,7 @@ public class StatusProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
+        Log.d(TAG, "delete");
         SQLiteDatabase db = statusData.dbHelper.getWritableDatabase();
         try {
             long id = getId(uri);
@@ -47,6 +49,7 @@ public class StatusProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
+        Log.i(TAG, "insert");
         SQLiteDatabase db = statusData.dbHelper.getWritableDatabase();
         try {
             long id = db.insertOrThrow(StatusData.TABLE, null, values);
@@ -63,6 +66,7 @@ public class StatusProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
+        Log.d(TAG, "onCreate");
         statusData = new StatusData(getContext());
         return false;
     }
@@ -70,6 +74,7 @@ public class StatusProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
+        Log.d(TAG, "query");
         SQLiteDatabase db = statusData.dbHelper.getReadableDatabase();
         long id = getId(uri);
         if (id < 0) {
@@ -82,6 +87,7 @@ public class StatusProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
+        Log.i(TAG, "update");
         SQLiteDatabase db = statusData.dbHelper.getWritableDatabase();
         try {
             long id = getId(uri);

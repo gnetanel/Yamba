@@ -13,4 +13,6 @@
     <string name="titleServiceStop">Stop service</string>
     <string name="timelineHeader">Timeline</string>
     <string name="titleGoToTimeline">Go to Timeline</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

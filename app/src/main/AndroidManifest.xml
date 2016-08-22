@@ -57,7 +57,17 @@
             android:name=".StatusProvider"
             android:authorities="yamba.com.example.netanel.yamba.statusprovider"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
+
+        <receiver android:name=".YambaWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/yamba_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

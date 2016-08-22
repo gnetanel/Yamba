@@ -2,20 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="yamba.com.example.netanel.yamba">
 
-
-    <permission android:name="yamba.com.example.netanel.yamba.SEND_TIMELINE_PERMISSION"
-        android:protectionLevel="normal"
-        />
-    <permission android:name="yamba.com.example.netanel.yamba.RECEIEVE_TIMELINE_PERMISSION"
-        android:protectionLevel="normal"
-        />
+    <permission
+        android:name="yamba.com.example.netanel.yamba.SEND_TIMELINE_PERMISSION"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="yamba.com.example.netanel.yamba.RECEIEVE_TIMELINE_PERMISSION"
+        android:protectionLevel="normal" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="yamba.com.example.netanel.yamba.SEND_TIMELINE_PERMISSION"/>
-    <uses-permission android:name="yamba.com.example.netanel.yamba.RECEIEVE_TIMELINE_PERMISSION"/>
-
+    <uses-permission android:name="yamba.com.example.netanel.yamba.SEND_TIMELINE_PERMISSION" />
+    <uses-permission android:name="yamba.com.example.netanel.yamba.RECEIEVE_TIMELINE_PERMISSION" />
 
     <application
         android:name=".YambaApplication"
@@ -53,7 +51,13 @@
         <receiver
             android:name=".NetworkReceiever"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
+
+        <provider
+            android:name=".StatusProvider"
+            android:authorities="yamba.com.example.netanel.yamba.statusprovider"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>

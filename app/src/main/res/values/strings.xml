@@ -16,5 +16,18 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="msgLastTimelineUpdate">last time update</string>
+    <string name="titleProvider">Location providers</string>
+    <string name="summaryProvider">List of available location provider to select from</string>
+    <string-array name="providers">
+        <item>None, please</item>
+        <item>GPS via satellites</item>
+        <item>Mobile Network will do</item>
+    </string-array>
+    <string-array name="providerValues">
+        <item>NONE</item>
+        <item>gsp</item>
+        <item>network</item>
+    </string-array>
+
 
 </resources>

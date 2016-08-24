@@ -7,5 +7,11 @@
         android:key="password"></EditTextPreference>
     <EditTextPreference android:title="@string/titleApiRoot"
         android:summary="@string/summaryApiRoot" android:key="apiRoot"></EditTextPreference>
-
+    <ListPreference
+        android:title="@string/titleProvider"
+        android:summary="@string/summaryProvider"
+        android:key="provider"
+        android:entries="@array/providers"
+        android:entryValues="@array/providerValues"
+    />
 </PreferenceScreen>

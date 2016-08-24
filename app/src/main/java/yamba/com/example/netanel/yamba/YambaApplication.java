@@ -99,4 +99,7 @@ public class YambaApplication extends Application implements SharedPreferences.O
         this.serviceRunning = serviceRunning;
     }
 
+    public String getProvider() {
+        return prefs.getString("provider", "NONE");
+    }
 }

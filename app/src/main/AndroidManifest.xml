@@ -14,6 +14,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="yamba.com.example.netanel.yamba.SEND_TIMELINE_PERMISSION" />
     <uses-permission android:name="yamba.com.example.netanel.yamba.RECEIEVE_TIMELINE_PERMISSION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
 
     <application
         android:name=".YambaApplication"

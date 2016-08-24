@@ -7,5 +7,10 @@
     <item android:title="@string/titleServiceStop" android:id="@+id/itemServiceStop"
         android:icon="@android:drawable/ic_media_pause"></item> <!-- -->
     <item android:title="@string/titleGoToTimeline" android:id="@+id/itemGoTotimeline"
-        android:icon="@android:drawable/ic_menu_preferences"></item> <!-- -->
+        android:icon="@android:drawable/ic_menu_preferences"></item>
+    <item android:title="@string/titleGoToStatus" android:id="@+id/itemGoToStatus"
+        android:icon="@android:drawable/ic_menu_preferences"></item>
+
+
+
 </menu>

@@ -53,6 +53,10 @@ public class BaseActivity extends AppCompatActivity {
                 Log.d(TAG,"Open timeline activity");
                 startActivity(new Intent(this, TimelineActivity.class));
                 break;
+            case R.id.itemGoToStatus:
+                Log.d(TAG,"Open status activity");
+                startActivity(new Intent(this, StatusActivity1.class));
+                break;
             default:
                 Log.d(TAG,"Unknown option");
                 break;

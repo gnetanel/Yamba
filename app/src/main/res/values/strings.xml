@@ -47,6 +47,7 @@
         <item>43200000</item>
         <item>86400000</item>
     </string-array>
-
+    <string name="msgNotificationTitle">New Twitter updates</string>
+    <string name="msgNotificationMessage">Received new Twitter updated, click to view</string>
 
 </resources>

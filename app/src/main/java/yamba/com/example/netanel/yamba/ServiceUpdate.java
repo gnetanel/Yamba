@@ -1,6 +1,9 @@
 package yamba.com.example.netanel.yamba;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -18,6 +21,8 @@ public class ServiceUpdate extends IntentService {
 //    private Updater updater = null;
     public static final String UPDATE_INTENT = "yamba.com.example.netanel.yamba.UPDATE_INTENT";
     public static final String UPDATE_INTENT_COUNT ="updateCount";
+    private NotificationManager notificationManager;
+    private Notification notification;
 
     public ServiceUpdate() {
         super(TAG);
@@ -39,9 +44,31 @@ public class ServiceUpdate extends IntentService {
             intent.putExtra(UPDATE_INTENT_COUNT, i);
             //sendBroadcast(intent);
             sendBroadcast(intent, "yamba.com.example.netanel.yamba.RECEIEVE_TIMELINE_PERMISSION");
+
+            // notify the topbar.
+            notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+            notification = new Notification(android.R.drawable.stat_notify_chat,"", 0);
+            sendTimelineNotification(i);
         } else {
             Log.d(TAG, "No new messages Received");
         }
+    }
+
+    private void sendTimelineNotification(int newMessages) {
+
+        Log.d(TAG, "sendTimelineNotification");
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, -1,
+                new Intent(this, TimelineActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        notification.when = System.currentTimeMillis();
+        CharSequence notificationTitle = getText(R.string.msgNotificationTitle);
+        CharSequence notificationSummary = getString(R.string.msgNotificationMessage, newMessages);
+
+        /* The below is required but not compiled, need to check alternative way to do that
+        this.notification.setLatestEventInfo(this, notificationTitle,
+                notificationSummary, pendingIntent); //
+        */
+        notificationManager.notify(0, this.notification);
     }
 
 //    @Override

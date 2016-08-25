@@ -143,32 +143,6 @@ public class StatusActivity1 extends BaseActivity implements View.OnClickListene
         }
     }
 
-    // Called when an options item is clicked
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG,"Option selected, value = " + item.getItemId());
-        switch (item.getItemId()) { //
-            case R.id.itemPrefs:
-                Log.d(TAG,"Selected item is itemPrefs, launching activity...");
-                startActivity(new Intent(this, PrefsActivity.class)); //
-                break;
-            case R.id.itemServiceStart:
-                Log.d(TAG,"Start service from option menu");
-                startService(new Intent(this,ServiceUpdate.class));
-                break;
-            case R.id.itemServiceStop:
-                Log.d(TAG,"Stop service from option menu");
-                stopService(new Intent(this,ServiceUpdate.class));
-                break;
-            case R.id.itemGoTotimeline:
-                Log.d(TAG,"Open timeline activity");
-                startActivity(new Intent(this, TimelineActivity.class));
-                break;
-            default:
-                Log.d(TAG,"Unknown option");
-            break;
-        }
-        return true; //
-    }
+
 
 }

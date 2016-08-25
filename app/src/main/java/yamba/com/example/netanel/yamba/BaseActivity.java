@@ -41,13 +41,16 @@ public class BaseActivity extends AppCompatActivity {
                 Log.d(TAG,"Selected item is itemPrefs, launching activity...");
                 startActivity(new Intent(this, PrefsActivity.class)); //
                 break;
-            case R.id.itemServiceStart:
-                Log.d(TAG,"Start service from option menu");
-                startService(new Intent(this,ServiceUpdate.class));
-                break;
-            case R.id.itemServiceStop:
-                Log.d(TAG,"Stop service from option menu");
-                stopService(new Intent(this,ServiceUpdate.class));
+//            case R.id.itemServiceStart:
+//                Log.d(TAG,"Start service from option menu");
+//                startService(new Intent(this,ServiceUpdate.class));
+//                break;
+//            case R.id.itemServiceStop:
+//                Log.d(TAG,"Stop service from option menu");
+//                stopService(new Intent(this,ServiceUpdate.class));
+//                break;
+            case R.id.itemRefresh:
+                startService(new Intent(this, ServiceUpdate.class));
                 break;
             case R.id.itemGoTotimeline:
                 Log.d(TAG,"Open timeline activity");
@@ -65,14 +68,3 @@ public class BaseActivity extends AppCompatActivity {
     }
 }
 
-/**
- yamba.com.example.netanel.yamba_preferences.xml
- root@generic_x86:/data/data/yamba.com.example.netanel.yamba/shared_prefs #
- cat yamba.com.example.netanel.yamba_preferences.xml
- <?xml version='1.0' encoding='utf-8' standalone='yes' ?>
- <map>
- <string name="username">student</string>
- <string name="password">password</string>
- <string name="apiRoot">rrrrrr</string>
- </map>
- */
